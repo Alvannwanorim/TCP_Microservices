@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { EventPattern } from '@nestjs/microservices';
+import { EventPattern, MessagePattern } from '@nestjs/microservices';
 import { AppService } from './app.service';
 import { CreateOrderEvent } from './events/create-order.event';
 
@@ -15,5 +15,11 @@ export class AppController {
   @EventPattern('order_create')
   handleOrderEvent(data: CreateOrderEvent) {
     console.log('products', data);
+    this.appService.saveProduct(data);
+  }
+
+  @MessagePattern({ cmd: 'get_products' })
+  getProducts() {
+    return this.appService.getAllProducts();
   }
 }

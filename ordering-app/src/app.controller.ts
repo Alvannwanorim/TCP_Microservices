@@ -15,4 +15,9 @@ export class AppController {
   public createOrders(@Body() createOrders: CreateOrder) {
     return this.appService.createOrders(createOrders);
   }
+
+  @Get('products')
+  public getProducts() {
+    return this.appService.getAllProducts();
+  }
 }

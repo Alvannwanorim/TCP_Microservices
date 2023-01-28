@@ -26,4 +26,8 @@ export class AppService {
   getHello(): string {
     return 'Hello World!';
   }
+
+  getAllProducts() {
+    return this.productsClient.send({ cmd: 'get_products' }, {});
+  }
 }
